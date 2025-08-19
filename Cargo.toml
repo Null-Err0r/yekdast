@@ -1,0 +1,16 @@
+[package]
+name = "yekdast"
+version = "0.1.0" 
+authors = ["esmaeil asadi <nullerror@duck.com>"] 
+edition = "2021"
+description = "A utility library for normalizing and cleaning up Persian (Farsi) text." 
+license = "MIT" 
+repository = "https://github.com/Null-Err0r/yekdast" 
+keywords = ["persian", "farsi", "normalize", "text", "iran"] 
+categories = ["text-processing"] 
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+unicode-normalization = "0.1"
+once_cell = "1.19"
+regex = "1.10"
