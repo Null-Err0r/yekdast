@@ -9,30 +9,24 @@ fn main() {
 
     println!("\n[ورودی]");
     println!("متن اصلی: {}", messy_text);
-    
-    // --- ساخت تنظیمات سفارشی ---
-    
-    // دیکشنری برای تبدیل کلمات محاوره‌ای به رسمی
+        
     let mut slang_map = HashMap::new();
     slang_map.insert("توی".to_string(), "در".to_string());
     slang_map.insert("خونه".to_string(), "خانه".to_string());
     
-    // لیست کلمات مرکبی که باید نیم‌فاصله بگیرند
     let zwnj_words = vec![
         "کار میکنم".to_string(),
         "کتاب خانه".to_string(),
         "علاقه مند".to_string(),
     ];
     
-    // ساختن نمونه تنظیمات
     let options = NormalizeOptions {
-        digits: DigitPolicy::Fa, // اعداد را به فارسی تبدیل کن
+        digits: DigitPolicy::Fa, 
         slang_map,
         zwnj_compound_words: zwnj_words,
         ..Default::default()
     };
     
-    // فراخوانی تابع اصلی کتابخانه
     let clean_text = normalize_text(messy_text, &options);
     
     println!("\n[خروجی]");
