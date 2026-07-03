@@ -22,76 +22,13 @@
 برای استفاده از `Yekdast` در پروژه خود، کافی است خط زیر را به فایل `Cargo.toml` اضافه کنید:
 ```toml
 [dependencies]
-yekdast = "0.1.0" 
+yekdast = "آخرین ورژن رو از مسیر زیر ببینید" 
 ```
 
 ---
-### ## شروع سریع
+[![Crates.io](https://img.shields.io/crates/v/yekdast.svg)](https://crates.io/crates/yekdast)
 
-استفاده از کتابخانه با تنظیمات پیش‌فرض بسیار ساده است.
-
-```rust
-use yekdast::{normalize_text, NormalizeOptions};
-
-fn main() {
-    let messy_text = "سلام, من يك برنامه نويس هستم و در كتاب خانه كار مي كنم.";
-    
-    // استفاده از تنظیمات پیش‌فرض
-    let options = NormalizeOptions::default();
-    
-    let clean_text = normalize_text(messy_text, &options);
-    
-    println!("متن اصلی: {}", messy_text);
-    println!("متن اصلاح شده: {}", clean_text);
-    // خروجی: متن اصلاح شده: سلام، من یک برنامه نویس هستم و در کتاب خانه کار می کنم.
-}
-```
-
----
-### ## استفاده پیشرفته و گزینه‌ها
-
-قدرت واقعی `Yekdast` در قابلیت تنظیم آن است. شما می‌توانید تمام جنبه‌های نرمال‌سازی را کنترل کنید.
-
-```rust
-use yekdast::{normalize_text, NormalizeOptions, DigitPolicy};
-use std::collections::HashMap;
-
-fn main() {
-    let text = "من توی خونه شماره 123 کار میکنم و علاقه مند به برنامه نویسی هستم. میباشد.";
-
-    // ۱. دیکشنری کلمات محاوره‌ای به رسمی
-    let mut slang_map = HashMap::new();
-    slang_map.insert("توی".to_string(), "در".to_string());
-    slang_map.insert("خونه".to_string(), "خانه".to_string());
-
-    // ۲. لیست کلمات مرکب برای اعمال نیم‌فاصله
-    let zwnj_words = vec![
-        "علاقه مند".to_string(),
-        "کار میکنم".to_string(), // این یک مثال است، معمولاً برای افعال استفاده نمی‌شود
-    ];
-
-    // ۳. قوانین جایگزینی سفارشی
-    let custom_rules = vec![
-        ("میباشد.".to_string(), "است.".to_string()),
-    ];
-
-    // ۴. ساختن تنظیمات نهایی
-    let options = NormalizeOptions {
-        digits: DigitPolicy::Fa, // تبدیل اعداد به فارسی
-        slang_map,
-        zwnj_compound_words: zwnj_words,
-        custom_rules,
-        ..Default::default()
-    };
-    
-    let clean_text = normalize_text(text, &options);
-
-    println!("{}", clean_text);
-    // خروجی: من در خانه شماره ۱۲۳ کار‌می‌کنم و علاقه‌مند به برنامه نویسی هستم. است.
-}
-```
-
-### ## لیست کامل قابلیت‌ها
+### ## لیست قابلیت‌ها ...
 - [x] یکسان‌سازی حروف عربی (ي, ك) به فارسی (ی, ک)
 - [x] نرمال‌سازی و تبدیل ارقام (فارسی، عربی، لاتین)
 - [x] اصلاح علائم نگارشی (کاما، نقطه ویرگول، علامت سوال)
@@ -103,11 +40,6 @@ fn main() {
 - [x] حذف اعراب و کشیدگی (تطویل)
 - [x] محافظت خودکار از URL, ایمیل, کد و تگ‌های HTML
 - [x] پشتیبانی از فرمت‌های مختلف نرمال‌سازی یونیکد (NFC, NFKC)
-
----
-### ## مشارکت
-
-مشارکت در این پروژه مورد استقبال قرار می‌گیرد. لطفاً برای گزارش باگ یا ارائه پیشنهاد، یک Issue جدید باز کنید یا یک Pull Request ارسال نمایید.
 
 ---
 
